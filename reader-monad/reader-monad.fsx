@@ -28,6 +28,7 @@ module Reader =
     let (>>=) = bind
 
     type ReaderBuilder internal () =
+        member _.Zero () = ()
         member _.Bind(m, f) = m >>= f
         member _.Return(v) = constant v
         member _.ReturnFrom(v) = v
