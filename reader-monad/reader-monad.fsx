@@ -27,6 +27,10 @@ module Reader =
 
     let (>>=) = bind
 
+    // Lifters
+    let lift1 (f : 'd -> 'a -> 'out) : 'a -> Reader<'d, 'out> =
+        fun a dep -> f dep a
+
     type ReaderBuilder internal () =
         member _.Zero () = ()
         member _.Bind(m, f) = m >>= f
