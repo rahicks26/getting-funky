@@ -1,14 +1,5 @@
-#load "./reader-monad.fsx"
+#load "../reader-monad.fsx"
 open ``Reader-monad``
-
-// Shows an example of handling dependencies 
-// via partial application
-module TestWithPartialApplication =
-    let printer print s = print s
-
-    let appliedPrinter = (printf "%s") 
-
-    appliedPrinter "test"
 
 // Explores how to handle dependencies
 // via Reader Monad with interfaces
