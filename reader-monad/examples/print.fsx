@@ -45,3 +45,22 @@ module TestWithRecord =
 
     testComp "test"
     |> run printer
+
+// Explores how to handle dependencies
+// via Reader Monad with functions
+module TestWithFunction =
+    // Dependency
+    type Printer = string -> unit
+   
+    // Implementation
+    let printer s =  printfn "%s" s; 
+    
+    let print = lift1 (fun (p : Printer) -> p)
+
+    let testComp msg = 
+        reader {
+            do! print msg
+        }
+
+    testComp "test"
+    |> run printer
